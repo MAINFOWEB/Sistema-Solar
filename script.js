@@ -1,32 +1,42 @@
-function mostrarInfo(nome, descricao, caminhoImagem) {
-    const painel = document.getElementById('painel-info');
-    const titulo = document.getElementById('titulo-astro');
-    const desc = document.getElementById('desc-astro');
-    const imagem = document.getElementById('img-astro');
-    
-    // Pausa as órbitas para o usuário conseguir ver o planeta
-    const orbitas = document.querySelectorAll('[class^="orbita-"]');
-    orbitas.forEach(o => o.style.animationPlayState = 'paused');
+let isDragging = false;
+let startX, startY, scrollX, scrollY;
+const universo = document.getElementById('universo');
+const viewport = document.getElementById('viewport');
 
-    titulo.innerText = nome;
-    desc.innerText = descricao;
+viewport.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - universo.offsetLeft;
+    startY = e.pageY - universo.offsetTop;
+});
 
-    if (caminhoImagem) {
-        imagem.src = caminhoImagem;
-        imagem.style.display = "block";
-        imagem.onerror = () => imagem.style.display = "none";
-    } else {
-        imagem.style.display = "none";
-    }
+viewport.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - startX;
+    const y = e.pageY - startY;
+    universo.style.left = x + 'px';
+    universo.style.top = y + 'px';
+});
 
-    painel.classList.add('ativo');
+window.addEventListener('mouseup', () => isDragging = false);
+
+function mostrarInfo(nome, descricao, img) {
+    const p = document.getElementById('painel-info');
+    document.getElementById('titulo-astro').innerText = nome;
+    document.getElementById('desc-astro').innerText = descricao;
+    const i = document.getElementById('img-astro');
+    if(img) { i.src = img; i.style.display = 'block'; }
+    p.classList.add('ativo');
+    document.querySelectorAll('[class^="orbita-"]').forEach(o => o.style.animationPlayState = 'paused');
 }
 
 function fecharPainel() {
-    const painel = document.getElementById('painel-info');
-    painel.classList.remove('ativo');
-    
-    // Retoma o movimento
-    const orbitas = document.querySelectorAll('[class^="orbita-"]');
-    orbitas.forEach(o => o.style.animationPlayState = 'running');
+    document.getElementById('painel-info').classList.remove('ativo');
+    document.querySelectorAll('[class^="orbita-"]').forEach(o => o.style.animationPlayState = 'running');
 }
+
+function closeWelcome() {
+    document.getElementById('welcome-modal').style.display = 'none';
+}
+
+document.addEventListener('keydown', (e) => { if(e.key === "Escape") fecharPainel(); });
