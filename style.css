@@ -1,135 +1,124 @@
 body {
     margin: 0;
     height: 100vh;
-    background: radial-gradient(circle at center, #111, #000);
+    background: #000;
     overflow: hidden;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
 }
+
+#viewport {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+#viewport:active { cursor: grabbing; }
 
 .universo {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    transform: scale(0.5); /* Zoom out para caber tudo */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* --- O SEGREDO DO CLIQUE --- */
 [class^="orbita-"] {
     position: absolute;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    pointer-events: none; /* Faz o mouse atravessar a órbita */
-}
-
-.planeta, .lua, .sol {
-    pointer-events: auto; /* Faz o clique funcionar apenas no astro */
-    cursor: pointer;
-}
-/* --------------------------- */
-
-.sol {
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, #fff, #ff0, #f90);
-    border-radius: 50%;
-    box-shadow: 0 0 80px #f90;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.label-astro {
-    position: absolute;
-    top: -30px;
-    font-weight: bold;
-    color: #00d2ff;
-    white-space: nowrap;
-}
-
-.planeta {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    border-radius: 50%;
-}
-
-/* Definição das Órbitas e Cores */
-.orbita-mercurio { width: 220px; height: 220px; animation: rotacionar 10s linear infinite; }
-.mercurio { width: 15px; height: 15px; background: #888; left: -7px; }
-
-.orbita-venus { width: 320px; height: 320px; animation: rotacionar 15s linear infinite; }
-.venus { width: 25px; height: 25px; background: #e3bb76; left: -12px; }
-
-.orbita-terra { width: 450px; height: 450px; animation: rotacionar 25s linear infinite; }
-.terra { width: 30px; height: 30px; background: #2271b3; left: -15px; }
-
-.orbita-marte { width: 580px; height: 580px; animation: rotacionar 35s linear infinite; }
-.marte { width: 22px; height: 22px; background: #e27b58; left: -11px; }
-
-.orbita-jupiter { width: 850px; height: 850px; animation: rotacionar 60s linear infinite; }
-.jupiter { width: 70px; height: 70px; background: radial-gradient(circle, #d39c7e, #966b53); left: -35px; }
-
-.orbita-saturno { width: 1100px; height: 1100px; animation: rotacionar 90s linear infinite; }
-.saturno { width: 60px; height: 60px; background: #e2bf7d; left: -30px; }
-
-.aneis-saturno {
-    position: absolute;
-    width: 120px;
-    height: 40px;
-    border: 6px solid rgba(194, 174, 128, 0.4);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateX(75deg);
-}
-
-.orbita-urano { width: 1350px; height: 1350px; animation: rotacionar 150s linear infinite; }
-.urano { width: 45px; height: 45px; background: #b1e1e2; left: -22px; }
-
-.orbita-netuno { width: 1550px; height: 1550px; animation: rotacionar 200s linear infinite; }
-.netuno { width: 45px; height: 45px; background: #297fff; left: -22px; }
-
-.orbita-plutao { width: 1750px; height: 1750px; animation: rotacionar 280s linear infinite; }
-.plutao { width: 12px; height: 12px; background: #c39e82; left: -6px; }
-
-/* Luas */
-.orbita-lua {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    animation: rotacionar 5s linear infinite;
+    pointer-events: none;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.lua { width: 8px; height: 8px; background: #ddd; position: absolute; left: 0; border-radius: 50%; }
 
-/* Painel */
+.planeta, .lua, .sol {
+    position: absolute;
+    pointer-events: auto;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.sol { width: 100px; height: 100px; background: radial-gradient(circle, #fff, #f90); box-shadow: 0 0 50px #f90; z-index: 10; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+.orbita-mercurio { width: 200px; height: 200px; animation: rodar 10s linear infinite; }
+.mercurio { width: 12px; height: 12px; background: #888; left: -6px; top: 50%; transform: translateY(-50%); }
+
+.orbita-terra { width: 400px; height: 400px; animation: rodar 25s linear infinite; }
+.terra { width: 28px; height: 28px; background: #2271b3; left: -14px; top: 50%; transform: translateY(-50%); }
+
+.orbita-jupiter { width: 800px; height: 800px; animation: rodar 60s linear infinite; }
+.jupiter { width: 60px; height: 60px; background: #d39c7e; left: -30px; top: 50%; transform: translateY(-50%); }
+
+.orbita-saturno { width: 1100px; height: 1100px; animation: rodar 90s linear infinite; }
+.saturno { width: 50px; height: 50px; background: #e2bf7d; left: -25px; top: 50%; transform: translateY(-50%); }
+
+.aneis-saturno {
+    position: absolute;
+    width: 100px; height: 30px;
+    border: 4px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotateX(75deg);
+}
+
+.area-lua {
+    position: absolute;
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: rodar 5s linear infinite;
+}
+
+.lua { width: 6px; height: 6px; background: #ddd; left: -3px; top: 50%; transform: translateY(-50%); }
+
+.label-astro {
+    position: absolute;
+    top: -25px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    white-space: nowrap;
+    color: #00d2ff;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5000;
+}
+
+.modal-content {
+    background: #111;
+    padding: 40px;
+    border: 1px solid #00d2ff;
+    text-align: center;
+    border-radius: 10px;
+}
+
 .painel {
     position: fixed;
-    bottom: -400px;
+    bottom: -100%;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
+    width: 100%;
     max-width: 500px;
-    background: rgba(0,0,0,0.9);
-    border: 2px solid #00d2ff;
-    border-radius: 20px 20px 0 0;
-    padding: 20px;
-    transition: 0.5s;
-    text-align: center;
+    background: rgba(10,10,10,0.95);
+    border: 1px solid #00d2ff;
+    padding: 30px;
+    transition: 0.6s;
     z-index: 2000;
+    text-align: center;
 }
-.painel.ativo { bottom: 0; }
-button { background: #00d2ff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-@keyframes rotacionar {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.painel.ativo { bottom: 0; }
+#img-astro { width: 120px; border-radius: 10px; margin-bottom: 15px; }
+
+@keyframes rodar {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
