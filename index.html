@@ -3,88 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Solar BTI - Márcio</title>
+    <title>Solar System Interface - BTI Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="universo">
-        <div class="sol" onclick="mostrarInfo('Sol', 'Estrela central do sistema solar.', 'assets/img/sol.jpg')">
-            <span class="label-astro">SOL</span>
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <h2>Sistema Solar Interativo</h2>
+            <p><strong>Navegação:</strong> Clique e arraste para mover o universo.</p>
+            <p><strong>Exploração:</strong> Clique nos astros para detalhes.</p>
+            <p><strong>Atalhos:</strong> [ESC] Fechar painéis | [F5] Reiniciar</p>
+            <button onclick="closeWelcome()">Iniciar Exploração</button>
         </div>
+    </div>
 
-        <div class="orbita-mercurio">
-            <div class="planeta mercurio" onclick="mostrarInfo('Mercúrio', 'O menor e mais rápido.', 'assets/img/mercurio.jpg')">
-                <span class="label-astro">MERCÚRIO</span>
+    <div id="viewport">
+        <div id="universo" class="universo">
+            <div class="sol" onclick="mostrarInfo('Sol', 'Estrela central de sequência principal tipo G.', 'assets/img/sol.jpg')">
+                <span class="label-astro">SOL</span>
             </div>
-        </div>
 
-        <div class="orbita-venus">
-            <div class="planeta venus" onclick="mostrarInfo('Vênus', 'O planeta mais quente.', 'assets/img/venus.jpg')">
-                <span class="label-astro">VÊNUS</span>
-            </div>
-        </div>
-
-        <div class="orbita-terra">
-            <div class="planeta terra" onclick="mostrarInfo('Terra', 'Nossa casa.', 'assets/img/terra.jpg')">
-                <span class="label-astro">TERRA</span>
-                <div class="orbita-lua terra-lua">
-                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Lua', 'Satélite natural da Terra.', 'assets/img/lua.jpg')"></div>
+            <div class="orbita-mercurio">
+                <div class="planeta mercurio" onclick="mostrarInfo('Mercúrio', 'O menor planeta do sistema.', 'assets/img/mercurio.jpg')">
+                    <span class="label-astro">MERCÚRIO</span>
                 </div>
             </div>
-        </div>
 
-        <div class="orbita-marte">
-            <div class="planeta marte" onclick="mostrarInfo('Marte', 'O planeta vermelho.', 'assets/img/marte.jpg')">
-                <span class="label-astro">MARTE</span>
-                <div class="orbita-lua marte-lua">
-                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Fobos', 'Uma das luas de Marte.', 'assets/img/fobos.jpg')"></div>
+            <div class="orbita-venus">
+                <div class="planeta venus" onclick="mostrarInfo('Vênus', 'Planeta com atmosfera de CO2 e efeito estufa extremo.', 'assets/img/venus.jpg')">
+                    <span class="label-astro">VÊNUS</span>
                 </div>
             </div>
-        </div>
 
-        <div class="orbita-jupiter">
-            <div class="planeta jupiter" onclick="mostrarInfo('Júpiter', 'O gigante gasoso com 79+ luas.', 'assets/img/jupiter.jpg')">
-                <span class="label-astro">JÚPITER</span>
-                <div class="orbita-lua jupiter-lua">
-                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Ganímedes', 'A maior lua do sistema.', 'assets/img/ganimedes.jpg')"></div>
+            <div class="orbita-terra">
+                <div class="planeta terra" onclick="mostrarInfo('Terra', 'Único corpo celeste com vida confirmada.', 'assets/img/terra.jpg')">
+                    <span class="label-astro">TERRA</span>
+                    <div class="area-lua">
+                        <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Lua', 'Satélite natural da Terra.', 'assets/img/lua.jpg')"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="orbita-saturno">
-            <div class="planeta saturno" onclick="mostrarInfo('Saturno', 'O senhor dos anéis.', 'assets/img/saturno.jpg')">
-                <span class="label-astro">SATURNO</span>
-                <div class="aneis-saturno"></div>
-                <div class="orbita-lua saturno-lua">
-                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Titã', 'Lua com atmosfera densa.', 'assets/img/tita.jpg')"></div>
+            <div class="orbita-marte">
+                <div class="planeta marte" onclick="mostrarInfo('Marte', 'Possui o Olympus Mons, o maior vulcão do sistema solar.', 'assets/img/marte.jpg')">
+                    <span class="label-astro">MARTE</span>
+                    <div class="area-lua">
+                        <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Fobos', 'Satélite irregular de Marte.', 'assets/img/fobos.jpg')"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="orbita-urano">
-            <div class="planeta urano" onclick="mostrarInfo('Urano', 'O gigante gelado inclinado.', 'assets/img/urano.jpg')">
-                <span class="label-astro">URANO</span>
-                <div class="orbita-lua urano-lua">
-                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Titânia', 'Maior lua de Urano.', 'assets/img/titania.jpg')"></div>
+            <div class="orbita-jupiter">
+                <div class="planeta jupiter" onclick="mostrarInfo('Júpiter', 'Gigante gasoso com massa 318 vezes maior que a Terra.', 'assets/img/jupiter.jpg')">
+                    <span class="label-astro">JÚPITER</span>
+                    <div class="area-lua">
+                        <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Ganímedes', 'Maior lua do sistema solar.', 'assets/img/ganimedes.jpg')"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="orbita-netuno">
-            <div class="planeta netuno" onclick="mostrarInfo('Netuno', 'Oitavo planeta do sistema.', 'assets/img/netuno.jpg')">
-                <span class="label-astro">NETUNO</span>
-                <div class="orbita-lua netuno-lua">
-                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Tritão', 'Lua gelada de Netuno.', 'assets/img/tritao.jpg')"></div>
+            <div class="orbita-saturno">
+                <div class="planeta saturno" onclick="mostrarInfo('Saturno', 'Sistema de anéis composto por gelo e poeira.', 'assets/img/saturno.jpg')">
+                    <span class="label-astro">SATURNO</span>
+                    <div class="aneis-saturno"></div>
+                    <div class="area-lua">
+                        <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Titã', 'Única lua com atmosfera densa e lagos de metano.', 'assets/img/tita.jpg')"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="orbita-plutao">
-            <div class="planeta plutao" onclick="mostrarInfo('Plutão', 'O eterno nono planeta.', 'assets/img/plutao.jpg')">
-                <span class="label-astro">PLUTÃO</span>
-                <div class="orbita-lua plutao-lua">
-                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Caronte', 'Companheira de Plutão.', 'assets/img/caronte.jpg')"></div>
+            <div class="orbita-plutao">
+                <div class="planeta plutao" onclick="mostrarInfo('Plutão', 'Planeta anão localizado no Cinturão de Kuiper.', 'assets/img/plutao.jpg')">
+                    <span class="label-astro">PLUTÃO</span>
+                    <div class="area-lua">
+                        <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Caronte', 'Satélite que forma sistema binário com Plutão.', 'assets/img/caronte.jpg')"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,10 +86,10 @@
 
     <div id="painel-info" class="painel">
         <div class="conteudo-painel">
-            <img id="img-astro" src="" alt="Astro" style="width: 150px; border-radius: 10px; margin-bottom: 10px; display: none;">
-            <h2 id="titulo-astro">Selecione um Astro</h2>
-            <p id="desc-astro">Clique nos planetas para explorar.</p>
-            <button onclick="fecharPainel()">Fechar</button>
+            <img id="img-astro" src="" alt="">
+            <h2 id="titulo-astro"></h2>
+            <p id="desc-astro"></p>
+            <button onclick="fecharPainel()">Retornar</button>
         </div>
     </div>
 
