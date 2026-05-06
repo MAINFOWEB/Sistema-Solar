@@ -1,29 +1,36 @@
 let isDragging = false;
-let startX, startY, scrollX, scrollY;
+let startX, startY, currentX = 0, currentY = 0;
+
 const universo = document.getElementById('universo');
 const viewport = document.getElementById('viewport');
 
+// Lógica para arrastar o universo
 viewport.addEventListener('mousedown', (e) => {
     isDragging = true;
-    startX = e.pageX - universo.offsetLeft;
-    startY = e.pageY - universo.offsetTop;
+    startX = e.clientX - currentX;
+    startY = e.clientY - currentY;
 });
 
-viewport.addEventListener('mousemove', (e) => {
+window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - startX;
-    const y = e.pageY - startY;
-    universo.style.left = x + 'px';
-    universo.style.top = y + 'px';
+    currentX = e.clientX - startX;
+    currentY = e.clientY - startY;
+    // Move o universo baseado no arraste do mouse
+    universo.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px)) scale(0.6)`;
 });
 
 window.addEventListener('mouseup', () => isDragging = false);
 
-function mostrarInfo(nome, descricao, img) {
+// Controle do Modal de Boas-vindas
+function closeWelcome() {
+    document.getElementById('welcome-modal').style.display = 'none';
+}
+
+// Controle do Painel de Informações
+function mostrarInfo(nome, desc, img) {
     const p = document.getElementById('painel-info');
     document.getElementById('titulo-astro').innerText = nome;
-    document.getElementById('desc-astro').innerText = descricao;
+    document.getElementById('desc-astro').innerText = desc;
     const i = document.getElementById('img-astro');
     if(img) { i.src = img; i.style.display = 'block'; }
     p.classList.add('ativo');
@@ -33,10 +40,6 @@ function mostrarInfo(nome, descricao, img) {
 function fecharPainel() {
     document.getElementById('painel-info').classList.remove('ativo');
     document.querySelectorAll('[class^="orbita-"]').forEach(o => o.style.animationPlayState = 'running');
-}
-
-function closeWelcome() {
-    document.getElementById('welcome-modal').style.display = 'none';
 }
 
 document.addEventListener('keydown', (e) => { if(e.key === "Escape") fecharPainel(); });
