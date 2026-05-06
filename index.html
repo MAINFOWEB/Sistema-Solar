@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Solar Interativo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="universo">
+        <div class="sol" id="sun"></div>
+        
+        <!-- Órbita da Terra -->
+        <div class="orbita-terra">
+            <div class="planeta terra" id="earth" onclick="mostrarInfo('Terra', 'A Terra é o único planeta conhecido por abrigar vida. Ela possui uma lua principal.')">
+                <!-- Lua da Terra -->
+                <div class="orbita-lua">
+                    <div class="lua" id="moon" onclick="event.stopPropagation(); mostrarInfo('Lua', 'A Lua é o único satélite natural da Terra.')"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Painel de Informações -->
+    <div id="painel-info" class="painel">
+        <h2 id="titulo-astro">Selecione um Astro</h2>
+        <p id="desc-astro">Clique em um planeta ou lua para ver os detalhes.</p>
+        <button onclick="fecharPainel()">Fechar</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
