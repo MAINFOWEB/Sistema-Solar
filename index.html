@@ -20,6 +20,25 @@
             </div>
         </div>
     </div>
+    <div class="orbita-marte" style="width: 550px; height: 550px; position: absolute; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50%; animation: rotacionar 35s linear infinite;">
+    <div class="planeta marte" style="width: 30px; height: 30px; background: radial-gradient(circle, #e27b58, #000);" 
+         onclick="mostrarInfo('Marte', 'Conhecido como Planeta Vermelho, possui o maior vulcão do sistema solar, o Monte Olimpo.', 'assets/img/marte.jpg')">
+        <span class="label-astro">MARTE</span>
+    </div>
+</div>
+
+<div class="orbita-jupiter" style="width: 800px; height: 800px; position: absolute; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50%; animation: rotacionar 60s linear infinite;">
+    <div class="planeta jupiter" style="width: 70px; height: 70px; background: radial-gradient(circle, #d39c7e, #000);" 
+         onclick="mostrarInfo('Júpiter', 'O gigante gasoso! É tão grande que caberiam 1.300 Terras dentro dele.', 'assets/img/jupiter.jpg')">
+        <span class="label-astro">JÚPITER</span>
+        
+        <div class="orbita-lua" style="width: 110px; height: 110px; animation-duration: 8s;">
+            <div class="lua" style="width: 12px; height: 12px; background: #b7b7b7;" 
+                 onclick="event.stopPropagation(); mostrarInfo('Ganímedes', 'A maior lua de Júpiter e de todo o sistema solar, sendo maior que o planeta Mercúrio.', 'assets/img/ganimedes.jpg')">
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Painel de Informações -->
     <div id="painel-info" class="painel">
