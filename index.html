@@ -2,70 +2,73 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Solar System - Marcio BTI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System Interface - BTI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="welcome-modal" class="modal">
         <div class="modal-content">
-            <h2>Sistema Solar Interativo</h2>
-            <p>Clique e arraste para navegar.<br>Clique nos astros para info.</p>
-            <button onclick="closeWelcome()">Explorar Universo</button>
+            <h2>Navegação Espacial</h2>
+            <p>Clique e arraste o fundo para navegar.<br>Clique nos planetas para informações.</p>
+            <button onclick="closeWelcome()">Iniciar Exploração</button>
         </div>
     </div>
 
     <div id="viewport">
         <div id="universo">
-            <div class="sol" onclick="mostrarInfo('Sol', 'Estrela central.', 'assets/img/sol.jpg')"><span>SOL</span></div>
+            <div class="sol" onclick="mostrarInfo('Sol', 'Estrela central do sistema solar.', 'assets/img/sol.jpg')">
+                <span class="label-fixa">SOL</span>
+            </div>
 
             <div class="orbita" style="width: 200px; height: 200px; animation-duration: 10s;">
-                <div class="planeta" style="background:#888; width:12px; height:12px; left:-6px;" onclick="mostrarInfo('Mercúrio', 'O mais próximo.', 'assets/img/mercurio.jpg')"></div>
+                <div class="planeta" style="background:#888; width:14px; height:14px; left:-7px;" onclick="mostrarInfo('Mercúrio', 'O menor planeta do sistema.', 'assets/img/mercurio.jpg')">
+                    <span class="label-fixa">MERCÚRIO</span>
+                </div>
             </div>
 
             <div class="orbita" style="width: 300px; height: 300px; animation-duration: 20s;">
-                <div class="planeta" style="background:#e3bb76; width:25px; height:25px; left:-12px;" onclick="mostrarInfo('Vênus', 'O mais quente.', 'assets/img/venus.jpg')"></div>
-            </div>
-
-            <div class="orbita" style="width: 450px; height: 450px; animation-duration: 30s;">
-                <div class="planeta" style="background:#2271b3; width:30px; height:30px; left:-15px;" onclick="mostrarInfo('Terra', 'Nossa casa.', 'assets/img/terra.jpg')">
-                    <div class="orbita-lua"><div class="lua" onclick="event.stopPropagation(); mostrarInfo('Lua', 'Satélite da Terra.', 'assets/img/lua.jpg')"></div></div>
+                <div class="planeta" style="background:#e3bb76; width:24px; height:24px; left:-12px;" onclick="mostrarInfo('Vênus', 'O planeta mais quente.', 'assets/img/venus.jpg')">
+                    <span class="label-fixa">VÊNUS</span>
                 </div>
             </div>
 
-            <div class="orbita" style="width: 600px; height: 600px; animation-duration: 40s;">
-                <div class="planeta" style="background:#e27b58; width:20px; height:20px; left:-10px;" onclick="mostrarInfo('Marte', 'Planeta vermelho.', 'assets/img/marte.jpg')"></div>
+            <div class="orbita" style="width: 450px; height: 450px; animation-duration: 35s;">
+                <div class="planeta" style="background:#2271b3; width:28px; height:28px; left:-14px;" onclick="mostrarInfo('Terra', 'Nossa casa.', 'assets/img/terra.jpg')">
+                    <span class="label-fixa">TERRA</span>
+                    <div class="container-lua">
+                        <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Lua', 'Satélite natural da Terra.', 'assets/img/lua.jpg')"></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="orbita" style="width: 850px; height: 850px; animation-duration: 80s;">
-                <div class="planeta" style="background:#d39c7e; width:60px; height:60px; left:-30px;" onclick="mostrarInfo('Júpiter', 'O gigante.', 'assets/img/jupiter.jpg')"></div>
+            <div class="orbita" style="width: 600px; height: 600px; animation-duration: 50s;">
+                <div class="planeta" style="background:#e27b58; width:20px; height:20px; left:-10px;" onclick="mostrarInfo('Marte', 'O planeta vermelho.', 'assets/img/marte.jpg')">
+                    <span class="label-fixa">MARTE</span>
+                </div>
             </div>
 
-            <div class="orbita" style="width: 1100px; height: 1100px; animation-duration: 120s;">
-                <div class="planeta" style="background:#e2bf7d; width:50px; height:50px; left:-25px;" onclick="mostrarInfo('Saturno', 'Anéis de gelo.', 'assets/img/saturno.jpg')">
+            <div class="orbita" style="width: 850px; height: 850px; animation-duration: 100s;">
+                <div class="planeta" style="background:#d39c7e; width:65px; height:65px; left:-32px;" onclick="mostrarInfo('Júpiter', 'O gigante gasoso.', 'assets/img/jupiter.jpg')">
+                    <span class="label-fixa">JÚPITER</span>
+                </div>
+            </div>
+
+            <div class="orbita" style="width: 1100px; height: 1100px; animation-duration: 160s;">
+                <div class="planeta" style="background:#e2bf7d; width:55px; height:55px; left:-27px;" onclick="mostrarInfo('Saturno', 'O senhor dos anéis.', 'assets/img/saturno.jpg')">
+                    <span class="label-fixa">SATURNO</span>
                     <div class="aneis"></div>
                 </div>
-            </div>
-
-            <div class="orbita" style="width: 1350px; height: 1350px; animation-duration: 200s;">
-                <div class="planeta" style="background:#b1e1e2; width:40px; height:40px; left:-20px;" onclick="mostrarInfo('Urano', 'Gigante de gelo.', 'assets/img/urano.jpg')"></div>
-            </div>
-
-            <div class="orbita" style="width: 1550px; height: 1550px; animation-duration: 250s;">
-                <div class="planeta" style="background:#297fff; width:38px; height:38px; left:-19px;" onclick="mostrarInfo('Netuno', 'Ventos fortes.', 'assets/img/netuno.jpg')"></div>
-            </div>
-
-            <div class="orbita" style="width: 1750px; height: 1750px; animation-duration: 300s;">
-                <div class="planeta" style="background:#c39e82; width:12px; height:12px; left:-6px;" onclick="mostrarInfo('Plutão', 'O renegado.', 'assets/img/plutao.jpg')"></div>
             </div>
         </div>
     </div>
 
     <div id="painel-info" class="painel">
-        <img id="img-astro" src="" style="width:100px; display:none; margin:0 auto 10px; border-radius:10px;">
+        <img id="img-astro" src="" alt="">
         <h2 id="titulo-astro"></h2>
         <p id="desc-astro"></p>
-        <button onclick="fecharPainel()">Fechar</button>
+        <button onclick="fecharPainel()">Retornar</button>
     </div>
 
     <script src="script.js"></script>
