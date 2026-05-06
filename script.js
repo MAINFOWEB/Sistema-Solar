@@ -13,7 +13,7 @@ window.onmousemove = (e) => {
     if (!isDragging) return;
     currentX = e.clientX - startX;
     currentY = e.clientY - startY;
-    universo.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px)) scale(0.6)`;
+    universo.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px)) scale(0.5)`;
 };
 
 window.onmouseup = () => isDragging = false;
