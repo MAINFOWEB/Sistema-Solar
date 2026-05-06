@@ -2,50 +2,99 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Sistema Solar Interativo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Solar Interativo - Completo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="universo">
-        <div class="sol" id="sun" onclick="mostrarInfo('Sol', 'O Sol é a estrela central do nosso sistema. É composto principalmente de hidrogênio e hélio.', 'assets/img/sol.jpg')">
+        <div class="sol" id="sun" onclick="mostrarInfo('Sol', 'O centro do nosso sistema. Uma estrela que mantém todos os planetas em órbita com a sua gravidade.', 'assets/img/sol.jpg')">
             <span class="label-astro">SOL</span>
         </div>
-        
+
+        <div class="orbita-mercurio">
+            <div class="planeta mercurio" onclick="mostrarInfo('Mercúrio', 'O planeta mais próximo do Sol e o menor do sistema. Não possui luas.', 'assets/img/mercurio.jpg')">
+                <span class="label-astro">MERCÚRIO</span>
+            </div>
+        </div>
+
+        <div class="orbita-venus">
+            <div class="planeta venus" onclick="mostrarInfo('Vênus', 'O planeta mais quente devido à sua atmosfera densa. Não tem luas.', 'assets/img/venus.jpg')">
+                <span class="label-astro">VÊNUS</span>
+            </div>
+        </div>
+
         <div class="orbita-terra">
-            <div class="planeta terra" id="earth" onclick="mostrarInfo('Terra', 'A Terra é o único planeta conhecido por abrigar vida. Ela possui uma lua principal.', 'assets/img/terra.jpg')">
+            <div class="planeta terra" onclick="mostrarInfo('Terra', 'A nossa casa. Único lugar conhecido com vida e água líquida na superfície.', 'assets/img/terra.jpg')">
                 <span class="label-astro">TERRA</span>
-                <div class="orbita-lua">
-                    <div class="lua" id="moon" onclick="event.stopPropagation(); mostrarInfo('Lua', 'A Lua é o único satélite natural da Terra.', 'assets/img/lua.jpg')"></div>
+                <div class="orbita-lua terra-lua">
+                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Lua', 'O único satélite natural da Terra.', 'assets/img/lua.jpg')"></div>
                 </div>
             </div>
         </div>
 
-        <div class="orbita-marte" style="width: 550px; height: 550px; position: absolute; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50%; animation: rotacionar 35s linear infinite;">
-            <div class="planeta marte" style="width: 30px; height: 30px; background: radial-gradient(circle, #e27b58, #000); position: absolute; top: 50%; left: -15px; border-radius: 50%; cursor: pointer;" 
-                 onclick="mostrarInfo('Marte', 'Conhecido como Planeta Vermelho, possui o maior vulcão do sistema solar, o Monte Olimpo.', 'assets/img/marte.jpg')">
+        <div class="orbita-marte">
+            <div class="planeta marte" onclick="mostrarInfo('Marte', 'O planeta vermelho. Possui duas pequenas luas e o maior vulcão do sistema solar.', 'assets/img/marte.jpg')">
                 <span class="label-astro">MARTE</span>
-            </div>
-        </div>
-
-        <div class="orbita-jupiter" style="width: 800px; height: 800px; position: absolute; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50%; animation: rotacionar 60s linear infinite;">
-            <div class="planeta jupiter" style="width: 70px; height: 70px; background: radial-gradient(circle, #d39c7e, #000); position: absolute; top: 50%; left: -35px; border-radius: 50%; cursor: pointer;" 
-                 onclick="mostrarInfo('Júpiter', 'O gigante gasoso! É tão grande que caberiam 1.300 Terras dentro dele.', 'assets/img/jupiter.jpg')">
-                <span class="label-astro">JÚPITER</span>
-                
-                <div class="orbita-lua" style="width: 110px; height: 110px; position: absolute; top: -20px; left: -20px; border-radius: 50%; animation: rotacionar 8s linear infinite;">
-                    <div class="lua" style="width: 12px; height: 12px; background: #b7b7b7; position: absolute; top: 50%; left: -6px; border-radius: 50%;" 
-                         onclick="event.stopPropagation(); mostrarInfo('Ganímedes', 'A maior lua de Júpiter e de todo o sistema solar.', 'assets/img/ganimedes.jpg')">
-                    </div>
+                <div class="orbita-lua marte-lua">
+                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Fobos', 'A maior das duas luas de Marte.', 'assets/img/fobos.jpg')"></div>
                 </div>
             </div>
         </div>
+
+        <div class="orbita-jupiter">
+            <div class="planeta jupiter" onclick="mostrarInfo('Júpiter', 'O gigante gasoso. Tem pelo menos 79 luas confirmadas.', 'assets/img/jupiter.jpg')">
+                <span class="label-astro">JÚPITER</span>
+                <div class="orbita-lua jupiter-lua">
+                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Ganímedes', 'A maior lua do sistema solar. Júpiter tem dezenas de outras luas.', 'assets/img/ganimedes.jpg')"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="orbita-saturno">
+            <div class="planeta saturno" onclick="mostrarInfo('Saturno', 'Famoso pelos seus anéis. Possui mais de 80 luas conhecidas.', 'assets/img/saturno.jpg')">
+                <span class="label-astro">SATURNO</span>
+                <div class="aneis-saturno"></div>
+                <div class="orbita-lua saturno-lua">
+                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Titã', 'A maior lua de Saturno e a única com uma atmosfera densa.', 'assets/img/tita.jpg')"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="orbita-urano">
+            <div class="planeta urano" onclick="mostrarInfo('Urano', 'Um gigante de gelo que orbita de lado. Tem 27 luas conhecidas.', 'assets/img/urano.jpg')">
+                <span class="label-astro">URANO</span>
+                <div class="orbita-lua urano-lua">
+                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Titânia', 'A maior das 27 luas de Urano.', 'assets/img/titania.jpg')"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="orbita-netuno">
+            <div class="planeta netuno" onclick="mostrarInfo('Netuno', 'O planeta mais distante do Sol. Tem ventos fortíssimos e 14 luas.', 'assets/img/netuno.jpg')">
+                <span class="label-astro">NETUNO</span>
+                <div class="orbita-lua netuno-lua">
+                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Tritão', 'A maior lua de Netuno. É um dos lugares mais frios do sistema solar.', 'assets/img/tritao.jpg')"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="orbita-plutao">
+            <div class="planeta plutao" onclick="mostrarInfo('Plutão', 'O nono planeta oficial por décadas. Continua a ser um mundo fascinante na cintura de Kuiper.', 'assets/img/plutao.jpg')">
+                <span class="label-astro">PLUTÃO</span>
+                <div class="orbita-lua plutao-lua">
+                    <div class="lua" onclick="event.stopPropagation(); mostrarInfo('Caronte', 'A maior lua de Plutão. Forma quase um sistema de planeta duplo.', 'assets/img/caronte.jpg')"></div>
+                </div>
+            </div>
+        </div>
+
     </div> <div id="painel-info" class="painel">
-        <div class="conteudo-painel" style="display: flex; flex-direction: column; align-items: center;">
+        <div class="conteudo-painel">
             <img id="img-astro" src="" alt="Astro" style="width: 120px; border-radius: 10px; margin-bottom: 10px; display: none;">
             <h2 id="titulo-astro">Selecione um Astro</h2>
-            <p id="desc-astro">Clique em um planeta ou lua para ver os detalhes.</p>
-            <button onclick="fecharPainel()" style="margin-top: 10px; cursor: pointer; padding: 5px 15px;">Fechar</button>
+            <p id="desc-astro">Clique nos planetas ou luas para explorar.</p>
+            <button onclick="fecharPainel()">Fechar</button>
         </div>
     </div>
 
