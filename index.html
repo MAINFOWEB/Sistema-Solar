@@ -8,43 +8,45 @@
 <body>
 
     <div class="universo">
-        <div class="sol" id="sun"></div>
+        <div class="sol" id="sun" onclick="mostrarInfo('Sol', 'O Sol é a estrela central do nosso sistema. É composto principalmente de hidrogênio e hélio.', 'assets/img/sol.jpg')">
+            <span class="label-astro">SOL</span>
+        </div>
         
-        <!-- Órbita da Terra -->
         <div class="orbita-terra">
-            <div class="planeta terra" id="earth" onclick="mostrarInfo('Terra', 'A Terra é o único planeta conhecido por abrigar vida. Ela possui uma lua principal.')">
-                <!-- Lua da Terra -->
+            <div class="planeta terra" id="earth" onclick="mostrarInfo('Terra', 'A Terra é o único planeta conhecido por abrigar vida. Ela possui uma lua principal.', 'assets/img/terra.jpg')">
+                <span class="label-astro">TERRA</span>
                 <div class="orbita-lua">
-                    <div class="lua" id="moon" onclick="event.stopPropagation(); mostrarInfo('Lua', 'A Lua é o único satélite natural da Terra.')"></div>
+                    <div class="lua" id="moon" onclick="event.stopPropagation(); mostrarInfo('Lua', 'A Lua é o único satélite natural da Terra.', 'assets/img/lua.jpg')"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="orbita-marte" style="width: 550px; height: 550px; position: absolute; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50%; animation: rotacionar 35s linear infinite;">
-    <div class="planeta marte" style="width: 30px; height: 30px; background: radial-gradient(circle, #e27b58, #000);" 
-         onclick="mostrarInfo('Marte', 'Conhecido como Planeta Vermelho, possui o maior vulcão do sistema solar, o Monte Olimpo.', 'assets/img/marte.jpg')">
-        <span class="label-astro">MARTE</span>
-    </div>
-</div>
 
-<div class="orbita-jupiter" style="width: 800px; height: 800px; position: absolute; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50%; animation: rotacionar 60s linear infinite;">
-    <div class="planeta jupiter" style="width: 70px; height: 70px; background: radial-gradient(circle, #d39c7e, #000);" 
-         onclick="mostrarInfo('Júpiter', 'O gigante gasoso! É tão grande que caberiam 1.300 Terras dentro dele.', 'assets/img/jupiter.jpg')">
-        <span class="label-astro">JÚPITER</span>
-        
-        <div class="orbita-lua" style="width: 110px; height: 110px; animation-duration: 8s;">
-            <div class="lua" style="width: 12px; height: 12px; background: #b7b7b7;" 
-                 onclick="event.stopPropagation(); mostrarInfo('Ganímedes', 'A maior lua de Júpiter e de todo o sistema solar, sendo maior que o planeta Mercúrio.', 'assets/img/ganimedes.jpg')">
+        <div class="orbita-marte" style="width: 550px; height: 550px; position: absolute; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50%; animation: rotacionar 35s linear infinite;">
+            <div class="planeta marte" style="width: 30px; height: 30px; background: radial-gradient(circle, #e27b58, #000); position: absolute; top: 50%; left: -15px; border-radius: 50%; cursor: pointer;" 
+                 onclick="mostrarInfo('Marte', 'Conhecido como Planeta Vermelho, possui o maior vulcão do sistema solar, o Monte Olimpo.', 'assets/img/marte.jpg')">
+                <span class="label-astro">MARTE</span>
             </div>
         </div>
-    </div>
-</div>
 
-    <!-- Painel de Informações -->
-    <div id="painel-info" class="painel">
-        <h2 id="titulo-astro">Selecione um Astro</h2>
-        <p id="desc-astro">Clique em um planeta ou lua para ver os detalhes.</p>
-        <button onclick="fecharPainel()">Fechar</button>
+        <div class="orbita-jupiter" style="width: 800px; height: 800px; position: absolute; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50%; animation: rotacionar 60s linear infinite;">
+            <div class="planeta jupiter" style="width: 70px; height: 70px; background: radial-gradient(circle, #d39c7e, #000); position: absolute; top: 50%; left: -35px; border-radius: 50%; cursor: pointer;" 
+                 onclick="mostrarInfo('Júpiter', 'O gigante gasoso! É tão grande que caberiam 1.300 Terras dentro dele.', 'assets/img/jupiter.jpg')">
+                <span class="label-astro">JÚPITER</span>
+                
+                <div class="orbita-lua" style="width: 110px; height: 110px; position: absolute; top: -20px; left: -20px; border-radius: 50%; animation: rotacionar 8s linear infinite;">
+                    <div class="lua" style="width: 12px; height: 12px; background: #b7b7b7; position: absolute; top: 50%; left: -6px; border-radius: 50%;" 
+                         onclick="event.stopPropagation(); mostrarInfo('Ganímedes', 'A maior lua de Júpiter e de todo o sistema solar.', 'assets/img/ganimedes.jpg')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <div id="painel-info" class="painel">
+        <div class="conteudo-painel" style="display: flex; flex-direction: column; align-items: center;">
+            <img id="img-astro" src="" alt="Astro" style="width: 120px; border-radius: 10px; margin-bottom: 10px; display: none;">
+            <h2 id="titulo-astro">Selecione um Astro</h2>
+            <p id="desc-astro">Clique em um planeta ou lua para ver os detalhes.</p>
+            <button onclick="fecharPainel()" style="margin-top: 10px; cursor: pointer; padding: 5px 15px;">Fechar</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
