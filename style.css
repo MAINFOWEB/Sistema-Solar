@@ -1,10 +1,11 @@
+/* Configurações Globais */
 body {
     margin: 0;
     height: 100vh;
     background: #050505;
     overflow: hidden;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 .universo {
@@ -13,81 +14,160 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    perspective: 1000px;
+    perspective: 2000px;
+    /* Escala para caber tudo na tela (Plutão está longe!) */
+    transform: scale(0.6); 
 }
 
+/* Sol Radiante */
 .sol {
+    position: relative;
     width: 100px;
     height: 100px;
-    background: radial-gradient(circle, #ff0, #f90);
+    background: radial-gradient(circle, #fff700, #ff9100);
     border-radius: 50%;
-    box-shadow: 0 0 50px #f90;
+    box-shadow: 0 0 60px #ff9100, 0 0 120px #ff5e00;
     z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Órbita da Terra */
-.orbita-terra {
+/* Estilo Base para Órbitas */
+[class^="orbita-"] {
     position: absolute;
-    width: 400px;
-    height: 400px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    animation: rotacionar 20s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Estilo Base para Planetas */
 .planeta {
     position: absolute;
     top: 50%;
-    left: -20px;
+    left: 0;
     border-radius: 50%;
     cursor: pointer;
+    transform: translateY(-50%);
     transition: transform 0.3s;
+    z-index: 20;
 }
 
-.terra {
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, #2271b3, #000);
+.planeta:hover {
+    box-shadow: 0 0 15px white;
 }
 
-/* Órbita e Lua */
+/* Nomes dos Planetas */
+.label-astro {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: #00d2ff;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* Configurações Específicas de cada Órbita e Planeta */
+.orbita-mercurio { width: 180px; height: 180px; animation: rotacionar 10s linear infinite; }
+.mercurio { width: 15px; height: 15px; background: #999; left: -7px; }
+
+.orbita-venus { width: 260px; height: 260px; animation: rotacionar 18s linear infinite; }
+.venus { width: 25px; height: 25px; background: #e3bb76; left: -12px; }
+
+.orbita-terra { width: 380px; height: 380px; animation: rotacionar 25s linear infinite; }
+.terra { width: 30px; height: 30px; background: #2271b3; left: -15px; }
+
+.orbita-marte { width: 500px; height: 500px; animation: rotacionar 35s linear infinite; }
+.marte { width: 22px; height: 22px; background: #e27b58; left: -11px; }
+
+.orbita-jupiter { width: 750px; height: 750px; animation: rotacionar 60s linear infinite; }
+.jupiter { width: 60px; height: 60px; background: #d39c7e; left: -30px; }
+
+.orbita-saturno { width: 1000px; height: 1000px; animation: rotacionar 90s linear infinite; }
+.saturno { width: 50px; height: 50px; background: #e2bf7d; left: -25px; }
+
+.orbita-urano { width: 1250px; height: 1250px; animation: rotacionar 150s linear infinite; }
+.urano { width: 40px; height: 40px; background: #b1e1e2; left: -20px; }
+
+.orbita-netuno { width: 1450px; height: 1450px; animation: rotacionar 200s linear infinite; }
+.netuno { width: 38px; height: 38px; background: #297fff; left: -19px; }
+
+.orbita-plutao { width: 1650px; height: 1650px; animation: rotacionar 250s linear infinite; }
+.plutao { width: 12px; height: 12px; background: #c39e82; left: -6px; }
+
+/* Anéis de Saturno */
+.aneis-saturno {
+    position: absolute;
+    width: 90px;
+    height: 30px;
+    border: 5px solid rgba(194, 174, 128, 0.4);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(75deg);
+    pointer-events: none;
+}
+
+/* Luas */
 .orbita-lua {
     position: absolute;
-    width: 80px;
-    height: 80px;
-    top: -20px;
-    left: -20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     animation: rotacionar 5s linear infinite;
 }
 
 .lua {
     position: absolute;
-    width: 10px;
-    height: 10px;
     background: #ddd;
     border-radius: 50%;
+    cursor: pointer;
     top: 50%;
-    left: -5px;
+    left: 0;
+    transform: translateY(-50%);
 }
+
+/* Tamanhos de Luas específicos por órbita definida no HTML */
+.terra-lua { width: 60px; height: 60px; left: -15px; top: -15px; }
+.lua { width: 8px; height: 8px; }
 
 /* Painel de Informações */
 .painel {
     position: fixed;
-    bottom: -300px;
+    bottom: -400px;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 20px;
-    border: 1px solid #00d2ff;
-    transition: 0.5s;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 25px;
+    border: 2px solid #00d2ff;
+    border-radius: 20px 20px 0 0;
+    transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     text-align: center;
-    z-index: 100;
+    z-index: 1000;
+    box-shadow: 0 -10px 30px rgba(0, 210, 255, 0.2);
 }
 
-.painel.ativo { bottom: 20px; }
+.painel.ativo { bottom: 0; }
 
+.conteudo-painel button {
+    background: #00d2ff;
+    border: none;
+    padding: 10px 25px;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Animação Global */
 @keyframes rotacionar {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
