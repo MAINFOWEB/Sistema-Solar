@@ -1,111 +1,41 @@
-body {
-    margin: 0;
-    height: 100vh;
-    background: #000;
-    overflow: hidden;
-    color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-}
+body { margin: 0; background: #000; color: #fff; font-family: sans-serif; overflow: hidden; }
 
-/* Modal que cobre tudo no início */
-.modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Fica acima de tudo */
-}
-
-.modal-content {
-    background: #111;
-    padding: 30px;
-    border: 2px solid #00d2ff;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 400px;
-}
-
-.btn-iniciar {
-    background: #00d2ff;
-    color: #000;
-    border: none;
-    padding: 12px 30px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-/* Área de interação */
-#viewport {
-    width: 100vw;
-    height: 100vh;
-    cursor: grab;
-    position: relative;
-    z-index: 1;
-}
-
+#viewport { width: 100vw; height: 100vh; cursor: grab; position: relative; }
 #viewport:active { cursor: grabbing; }
 
-.universo {
+#universo {
     position: absolute;
     top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0.6);
-    pointer-events: none; /* Deixa o clique passar para o viewport ao arrastar */
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: transform 0.1s ease-out;
 }
 
-/* Órbitas e Astross */
-[class^="orbita-"] {
-    position: absolute;
+.sol {
+    position: absolute; width: 100px; height: 100px;
+    background: radial-gradient(circle, #fff, #f90);
+    border-radius: 50%; box-shadow: 0 0 50px #f90;
+    transform: translate(-50%, -50%); z-index: 10; cursor: pointer;
+}
+.sol span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 12px; }
+
+.orbita {
+    position: absolute; top: 50%; left: 50%;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    border-radius: 50%; transform: translate(-50%, -50%);
+    animation: rodar linear infinite; pointer-events: none;
 }
 
-.planeta, .sol, .lua {
-    position: absolute;
-    pointer-events: auto; /* Volta a ser clicável */
-    cursor: pointer;
-}
+.planeta { position: absolute; top: 50%; border-radius: 50%; transform: translateY(-50%); cursor: pointer; pointer-events: auto; }
 
-.sol { width: 100px; height: 100px; background: orange; border-radius: 50%; box-shadow: 0 0 50px orange; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.orbita-lua { position: absolute; width: 60px; height: 60px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rodar 5s linear infinite; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); }
+.lua { position: absolute; width: 6px; height: 6px; background: #eee; border-radius: 50%; top: 50%; left: -3px; transform: translateY(-50%); }
 
-.orbita-terra { width: 400px; height: 400px; animation: rodar 25s linear infinite; }
-.terra { width: 28px; height: 28px; background: #2271b3; left: -14px; top: 50%; transform: translateY(-50%); }
+.aneis { position: absolute; width: 80px; height: 25px; border: 3px solid rgba(255,255,255,0.2); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(75deg); }
 
-.area-lua {
-    position: absolute;
-    width: 60px; height: 60px;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    animation: rodar 5s linear infinite;
-}
-.lua { width: 6px; height: 6px; background: #eee; left: -3px; top: 50%; transform: translateY(-50%); }
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 999; }
+.modal-content { background: #111; padding: 30px; border: 1px solid #00d2ff; border-radius: 10px; text-align: center; }
 
-.label-astro { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #00d2ff; }
+.painel { position: fixed; bottom: -100%; left: 50%; transform: translateX(-50%); width: 80%; max-width: 400px; background: #111; border: 1px solid #00d2ff; padding: 20px; transition: 0.5s; z-index: 100; text-align: center; border-radius: 10px 10px 0 0; }
+.painel.ativo { bottom: 0; }
 
-/* Painel de informações */
-.painel {
-    position: fixed;
-    bottom: -100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%; max-width: 500px;
-    background: rgba(15,15,15,0.95);
-    border: 1px solid #00d2ff;
-    padding: 20px;
-    transition: 0.6s;
-    z-index: 5000;
-    text-align: center;
-}
-.painel.ativo { bottom: 20px; }
-
-@keyframes rodar {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-}
+@keyframes rodar { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
